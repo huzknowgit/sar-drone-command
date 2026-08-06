@@ -1,0 +1,123 @@
+.mapview-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mapview-leaflet {
+  width: 100%;
+  height: 100%;
+}
+
+.mapview-overlay-label {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  color: rgba(0, 229, 255, 0.3);
+  pointer-events: none;
+  z-index: 800;
+}
+
+.map-clickable {
+  cursor: crosshair;
+}
+
+.area-vertex {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--amber);
+  border-radius: 50%;
+  background: var(--bg-deep);
+  color: var(--amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  box-shadow: 0 0 8px var(--amber-glow);
+}
+
+.base-tooltip,
+.location-tooltip {
+  background: var(--bg-deep);
+  border: 1px solid var(--green);
+  border-radius: var(--radius);
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 3px 6px;
+  box-shadow: 0 0 10px var(--green-glow);
+}
+
+.base-tooltip.draft,
+.location-tooltip {
+  border-color: var(--amber);
+  color: var(--amber);
+  box-shadow: 0 0 10px var(--amber-glow);
+}
+
+.drone-map-tooltip {
+  background: rgba(5, 8, 16, 0.86);
+  border: 1px solid var(--cyan);
+  border-radius: var(--radius);
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  padding: 2px 5px;
+  box-shadow: 0 0 10px var(--cyan-glow);
+}
+
+/* Base marker */
+.base-marker-wrap {
+  filter: drop-shadow(0 0 10px rgba(0, 230, 118, 0.5));
+  animation: pulse-base 3s ease-in-out infinite;
+}
+
+@keyframes pulse-base {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(0,230,118,0.4)); }
+  50%       { filter: drop-shadow(0 0 16px rgba(0,230,118,0.8)); }
+}
+.alert-marker {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert-pulse {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 61, 61, 0.3);
+  animation: alert-ring 1.5s ease-out infinite;
+}
+
+.alert-core {
+  position: relative;
+  z-index: 1;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--red);
+  color: white;
+  font-family: var(--font-ui);
+  font-weight: 900;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px var(--red);
+}
+
+@keyframes alert-ring {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}

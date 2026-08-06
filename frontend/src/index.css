@@ -1,0 +1,177 @@
+/* ═══════════════════════════════════════════════════════════
+   SAR DRONE COMMAND — Global Styles
+   Aesthetic: Military-grade mission control. Dense, precise,
+   zero-chrome. Amber-on-black CRT warmth with cyan accents.
+═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* Core palette */
+  --bg-void:      #050810;
+  --bg-deep:      #080d1a;
+  --bg-panel:     #0b1221;
+  --bg-card:      #0e1628;
+  --bg-hover:     #121c34;
+  --border:       #1a2640;
+  --border-bright:#223355;
+
+  /* Accent colors */
+  --cyan:         #00e5ff;
+  --cyan-dim:     #0099bb;
+  --cyan-glow:    rgba(0, 229, 255, 0.15);
+  --amber:        #ffb300;
+  --amber-dim:    #cc8800;
+  --amber-glow:   rgba(255, 179, 0, 0.15);
+  --red:          #ff3d3d;
+  --red-glow:     rgba(255, 61, 61, 0.2);
+  --green:        #00e676;
+  --green-dim:    #009944;
+  --green-glow:   rgba(0, 230, 118, 0.15);
+
+  /* Status colors */
+  --status-searching: var(--cyan);
+  --status-returning: var(--amber);
+  --status-idle:      #607d8b;
+  --status-offline:   #37474f;
+  --status-unknown:   #546e7a;
+
+  /* Typography */
+  --font-mono:    "Share Tech Mono", "Courier New", monospace;
+  --font-ui:      "Exo 2", "Segoe UI", sans-serif;
+
+  /* Sizing */
+  --panel-gap:    10px;
+  --radius:       4px;
+  --radius-lg:    6px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  min-height: 100%;
+  width: 100%;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg-void);
+  color: #b0c4de;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-bright);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan-dim);
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  background: #050810 !important;
+  font-family: var(--font-mono) !important;
+}
+.leaflet-tile {
+  filter: saturate(0.3) brightness(0.5) hue-rotate(180deg);
+}
+.leaflet-control-zoom a {
+  background: var(--bg-card) !important;
+  color: var(--cyan) !important;
+  border-color: var(--border-bright) !important;
+}
+.leaflet-control-zoom a:hover {
+  background: var(--bg-hover) !important;
+}
+.leaflet-control-attribution {
+  background: rgba(5, 8, 16, 0.8) !important;
+  color: #334 !important;
+  font-size: 9px !important;
+}
+.leaflet-popup-content-wrapper {
+  background: var(--bg-card) !important;
+  color: var(--cyan) !important;
+  border: 1px solid var(--border-bright) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: 0 0 20px var(--cyan-glow) !important;
+  font-family: var(--font-mono) !important;
+}
+.leaflet-popup-tip {
+  background: var(--bg-card) !important;
+}
+.leaflet-popup-close-button {
+  color: var(--cyan-dim) !important;
+}
+
+/* Utility classes */
+.mono { font-family: var(--font-mono); }
+.cyan  { color: var(--cyan); }
+.amber { color: var(--amber); }
+.red   { color: var(--red); }
+.green { color: var(--green); }
+.dim   { opacity: 0.5; }
+
+/* Scanline overlay effect */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Pulse animation for active alerts */
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--red); }
+  50%       { opacity: 0.7; box-shadow: 0 0 20px var(--red); }
+}
+
+@keyframes pulse-cyan {
+  0%, 100% { box-shadow: 0 0 4px var(--cyan-glow); }
+  50%       { box-shadow: 0 0 14px var(--cyan-glow); }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}

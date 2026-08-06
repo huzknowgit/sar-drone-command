@@ -1,0 +1,23 @@
+# Core (always required)
+Flask==3.0.3
+flask-cors>=4.0.0                    # simulator inference service (browser origin)
+websockets==12.0
+numpy>=1.24.0
+
+# Camera
+opencv-python-headless==4.10.0.84   # use headless on Pi (no GUI deps)
+
+# AI detection (install at least one backend)
+ultralytics>=8.0.0                   # YOLOv8 — primary backend
+# The OpenCV DNN module (bundled above) covers the MobileNet SSD fallback;
+# download weights per models/README.md. HOG fallback needs nothing extra.
+
+# Flight controller
+pymavlink>=2.4.37                    # MAVLink interface
+
+# Thermal (optional — uncomment what you have)
+# smbus2>=0.4.3                      # AMG8833 via I2C
+# Adafruit-AMG88xx>=0.0.3            # AMG8833 Adafruit library (alternative)
+
+# Utils
+python-dotenv>=1.0.0                 # .env file support

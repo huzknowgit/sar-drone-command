@@ -1,0 +1,30 @@
+# --- dependencies ---
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# --- secrets ---
+# .env.example is tracked; real .env files are not.
+.env
+.env.*
+!.env.example
+
+# --- model weights ---
+*.pt
+
+# --- build & run output ---
+dist/
+build/
+runs/
+*.log
+*.err
+*.zip
+
+# --- editor / OS ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

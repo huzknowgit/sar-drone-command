@@ -1,0 +1,134 @@
+.alerts-panel {
+  min-height: 260px;
+}
+
+.alerts-panel.collapsed {
+  min-height: 0;
+}
+
+.alerts-panel.collapsed .panel-header {
+  border-bottom: 0;
+}
+
+.alerts-panel-body {
+  max-height: 330px;
+}
+
+.alerts-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+}
+
+.alert-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  padding: 7px 6px 7px 8px;
+  margin-bottom: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--alert-color, #607d8b);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+  animation: slide-in 0.2s ease-out;
+}
+
+.alert-row:hover {
+  background: var(--bg-hover);
+  border-color: var(--alert-color, #607d8b);
+}
+
+.alert-icon {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.alert-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.alert-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.alert-type {
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alert-conf {
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.alert-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alert-drone {
+  font-size: 10px;
+}
+
+.alert-time {
+  font-size: 10px;
+}
+
+.alert-locator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.alert-dismiss,
+.panel-clear-btn {
+  width: 22px;
+  min-width: 22px;
+  height: 22px;
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius);
+  background: var(--bg-deep);
+  color: #6f8bad;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.alert-dismiss:hover,
+.panel-clear-btn:hover {
+  color: var(--red);
+  border-color: var(--red);
+  background: rgba(255, 61, 61, 0.08);
+}
+
+.panel-clear-btn {
+  margin-left: 0;
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  font-size: 11px;
+}

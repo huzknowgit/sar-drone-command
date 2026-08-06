@@ -1,0 +1,13 @@
+{
+  "name": "sar-simulator",
+  "version": "1.0.0",
+  "description": "SAR Drone Swarm Monitoring - Drone Simulator",
+  "main": "simulator.js",
+  "scripts": {
+    "start": "node simulator.js",
+    "dev": "node --watch simulator.js"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}

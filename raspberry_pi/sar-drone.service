@@ -1,0 +1,15 @@
+[Unit]
+Description=SAR Drone Pi Node
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/opt/sar-drone
+EnvironmentFile=/opt/sar-drone/.env
+ExecStart=/opt/sar-drone/venv/bin/python main.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

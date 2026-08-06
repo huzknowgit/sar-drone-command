@@ -1,0 +1,100 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  gap: 24px;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.header-logo {
+  font-size: 22px;
+  color: var(--cyan);
+  filter: drop-shadow(0 0 8px var(--cyan));
+  line-height: 1;
+}
+
+.header-title-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-title {
+  font-family: var(--font-ui);
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  color: #e0eeff;
+  line-height: 1.1;
+}
+
+.header-subtitle {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--cyan-dim);
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  justify-content: center;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.status-label {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: #334466;
+  text-transform: uppercase;
+}
+
+.status-value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.status-divider {
+  width: 1px;
+  height: 30px;
+  background: var(--border-bright);
+  opacity: 0.5;
+}
+
+.header-clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.clock-label {
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: #334466;
+  text-transform: uppercase;
+}
+
+.clock-value {
+  font-size: 14px;
+  color: var(--amber);
+  letter-spacing: 0.05em;
+}

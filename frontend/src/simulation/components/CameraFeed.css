@@ -1,0 +1,249 @@
+.nadir-feed {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: #04070b;
+  border: 1px solid rgba(34, 51, 85, 0.85);
+  font-family: "SF Mono", "Consolas", "Roboto Mono", monospace;
+}
+
+.nadir-feed.tracking {
+  border-color: rgba(255, 61, 61, 0.55);
+}
+
+.nadir-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #05080d;
+}
+
+.nadir-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.nadir-offline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #46617d;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* --- detection boxes ---------------------------------------------------- */
+
+.nadir-box {
+  position: absolute;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+/* Human annotation. Dashed, so it never reads as a model output. */
+.nadir-box.truth {
+  border: 1px dashed rgba(0, 230, 118, 0.8);
+}
+
+/* Model prediction, drawn as corner brackets the way tracking systems mark a
+   locked target rather than as a plain rectangle. */
+.nadir-box.detected {
+  border: 1px solid rgba(255, 61, 61, 0.35);
+}
+
+.nadir-box.detected .c {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 2px solid #ff3d3d;
+}
+
+.nadir-box.detected .c.tl { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+.nadir-box.detected .c.tr { top: -2px; right: -2px; border-left: 0; border-bottom: 0; }
+.nadir-box.detected .c.bl { bottom: -2px; left: -2px; border-right: 0; border-top: 0; }
+.nadir-box.detected .c.br { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+
+.nadir-box-label {
+  position: absolute;
+  top: -13px;
+  left: -2px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #ff6b6b;
+  background: rgba(4, 7, 11, 0.85);
+  padding: 1px 4px;
+  white-space: nowrap;
+}
+
+/* --- sensor furniture --------------------------------------------------- */
+
+.nadir-reticle {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.nadir-reticle .tick {
+  position: absolute;
+  background: rgba(0, 229, 255, 0.5);
+}
+
+.nadir-reticle .tick.t,
+.nadir-reticle .tick.b { left: 50%; width: 1px; height: 12px; }
+.nadir-reticle .tick.t { top: 0; }
+.nadir-reticle .tick.b { bottom: 0; }
+
+.nadir-reticle .tick.l,
+.nadir-reticle .tick.r { top: 50%; height: 1px; width: 12px; }
+.nadir-reticle .tick.l { left: 0; }
+.nadir-reticle .tick.r { right: 0; }
+
+.nadir-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 52%, rgba(0, 0, 0, 0.42) 100%);
+}
+
+/* Faint rolling-shutter banding. Subtle on purpose — enough to read as a live
+   sensor rather than a still, without obscuring what the model is looking at. */
+.nadir-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.015) 0px,
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+/* --- on-screen display -------------------------------------------------- */
+
+.nadir-osd {
+  position: absolute;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  color: #cfe6f2;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.95);
+  pointer-events: none;
+}
+
+.osd-tl { top: 7px; left: 8px; }
+.osd-tr { top: 7px; right: 8px; }
+.osd-bl { bottom: 7px; left: 8px; }
+.osd-br { bottom: 7px; right: 8px; }
+
+.nadir-osd .dim { color: #8aa4bb; }
+
+.nadir-osd .rec {
+  color: #4a5a68;
+  font-size: 11px;
+}
+
+.nadir-osd .rec.on {
+  color: #ff3d3d;
+  animation: nadir-rec 1.6s ease-in-out infinite;
+}
+
+@keyframes nadir-rec {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.nadir-status {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: #8aa4bb;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.95);
+  pointer-events: none;
+}
+
+.nadir-status.hit {
+  color: #ff3d3d;
+  font-weight: 700;
+}
+
+.nadir-track-banner {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #ff3d3d;
+  background: rgba(4, 7, 11, 0.8);
+  border: 1px solid rgba(255, 61, 61, 0.5);
+  padding: 2px 8px;
+  /* The banner itself stays click-through so it never blocks the feed; only
+     the wave-off control takes pointer input. */
+  pointer-events: none;
+}
+
+.nadir-wave-off {
+  pointer-events: auto;
+  padding: 2px 7px;
+  border: 1px solid rgba(255, 179, 0, 0.65);
+  background: rgba(24, 16, 2, 0.9);
+  color: var(--amber, #ffb300);
+  font-family: inherit;
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.nadir-wave-off:hover {
+  color: #04070b;
+  background: var(--amber, #ffb300);
+  border-color: var(--amber, #ffb300);
+}
+
+/* --- footer ------------------------------------------------------------- */
+
+.nadir-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 9px;
+  border-top: 1px solid rgba(34, 51, 85, 0.85);
+  font-size: 8.5px;
+  letter-spacing: 0.05em;
+  color: #6f8bad;
+  background: rgba(3, 7, 13, 0.9);
+}
+
+.nadir-foot .hit {
+  color: #ff4d4d;
+  font-weight: 700;
+}
+
+.nadir-foot .dim {
+  color: #46617d;
+}
+
+@media (max-width: 1200px) {
+  .nadir-osd { font-size: 8px; gap: 6px; }
+  .nadir-foot { font-size: 8px; }
+}

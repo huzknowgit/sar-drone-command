@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAR Drone Command — autonomous search &amp; rescue drone system</title>
+<meta name="description" content="Real-time search-and-rescue drone command system: on-device AI person detection, MAVLink flight control, live video, and a mission dashboard.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <span class="nav-mark">SAR&nbsp;/&nbsp;DRONE&nbsp;COMMAND</span>
+    <nav class="nav-links">
+      <a href="#how">System</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#" class="nav-cta" id="repo-link">Source</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-kicker">Search &amp; rescue · autonomous aerial detection</p>
+      <h1>Find people from the air, in real time.</h1>
+      <p class="hero-sub">
+        A drone command system that pairs on-device AI person detection with
+        live flight telemetry and a mission dashboard — so a ground team gets
+        a GPS-tagged alert the moment a camera sees someone, not after the
+        footage is reviewed.
+      </p>
+      <div class="hero-stats">
+        <div><strong>&lt;2s</strong><span>detection to dashboard alert</span></div>
+        <div><strong>Multi</strong><span>drones, one shared dashboard</span></div>
+        <div><strong>100%</strong><span>operator-verified before action</span></div>
+      </div>
+    </div>
+    <div class="hero-media">
+      <video autoplay muted loop playsinline poster="assets/poster.jpg">
+        <source src="assets/heridal_sweep.mp4" type="video/mp4">
+      </video>
+      <p class="hero-media-caption">Live detection over real aerial search-and-rescue footage — not a simulated render.</p>
+    </div>
+  </section>
+
+  <section class="section-intro">
+    <p>
+      Raspberry Pi–class drone nodes run person detection on-device, drive
+      the flight controller over MAVLink, and stream video and telemetry to
+      a command dashboard. An operator draws a search area, deploys a sweep,
+      and watches alerts land on the map as the AI finds people — every
+      detection stays human-verified before any action is taken.
+    </p>
+  </section>
+
+  <section id="how" class="how">
+    <h2>How it fits together</h2>
+    <div class="diagram" role="img" aria-label="Architecture diagram: drone camera through AI detector to backend relay to dashboard, with mission commands flowing back to the drone.">
+      <div class="diagram-col">
+        <div class="diagram-box">
+          <p class="diagram-title">Drone node</p>
+          <p class="diagram-item">Camera + thermal</p>
+          <p class="diagram-item">On-device AI detector</p>
+          <p class="diagram-item">MAVLink flight control</p>
+        </div>
+      </div>
+      <div class="diagram-arrows">
+        <span>telemetry, video, alerts →</span>
+        <span>← mission plan, recall, fly-to</span>
+      </div>
+      <div class="diagram-col">
+        <div class="diagram-box">
+          <p class="diagram-title">Backend relay</p>
+          <p class="diagram-item">WebSocket server</p>
+          <p class="diagram-item">Drone + alert state</p>
+        </div>
+      </div>
+      <div class="diagram-arrows">
+        <span>→</span>
+        <span>←</span>
+      </div>
+      <div class="diagram-col">
+        <div class="diagram-box">
+          <p class="diagram-title">Command dashboard</p>
+          <p class="diagram-item">Live map + video overlay</p>
+          <p class="diagram-item">Mission sweep planner</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="protocol">
+      <table>
+        <thead><tr><th>Message</th><th>Direction</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td>telemetry_update</td><td>drone → dashboard</td><td>Position, battery, status, video</td></tr>
+          <tr><td>alert_event</td><td>drone → dashboard</td><td>Person detection, GPS + confidence</td></tr>
+          <tr><td>detection_frame</td><td>drone → dashboard</td><td>Annotated frame with bounding boxes</td></tr>
+          <tr><td>mission_plan_update</td><td>dashboard → drone</td><td>Search area + sweep waypoints</td></tr>
+          <tr><td>recall_drone</td><td>dashboard → drone</td><td>Return to launch</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="dashboard" class="gallery">
+    <h2>The operator's view</h2>
+    <p class="section-sub">Live map, sensor feed, and detection markers in one screen — built for someone watching several drones at once, not reading logs.</p>
+    <div class="gallery-grid">
+      <img src="assets/dashboard-1.png" alt="Dashboard: 3D tactical view with drone and detection markers" loading="lazy">
+      <img src="assets/dashboard-2.png" alt="Dashboard: onboard AI console with inference timing and confidence" loading="lazy">
+      <img src="assets/dashboard-3.png" alt="Dashboard: live map with sweep path and alert pins" loading="lazy">
+    </div>
+  </section>
+
+  <section id="roadmap" class="roadmap">
+    <h2>From bench to airframe</h2>
+    <ol class="roadmap-list">
+      <li>
+        <span class="roadmap-phase">01 — Bench prototype</span>
+        <p>Detection-to-dashboard pipeline on a desk — the phase this page shows.</p>
+      </li>
+      <li>
+        <span class="roadmap-phase">02 — Multirotor testbed</span>
+        <p>Whole system airborne on a quadcopter — mission sweep, live detection, RTL recall, under supervision.</p>
+      </li>
+      <li>
+        <span class="roadmap-phase">03 — VTOL fixed-wing</span>
+        <p>QuadPlane conversion, real thermal payload, 45+ minute endurance, night detection trials.</p>
+      </li>
+      <li>
+        <span class="roadmap-phase">04 — Multi-drone &amp; field trials</span>
+        <p>Coordinated sweep across drones, partnered field exercise with a SAR organization.</p>
+      </li>
+    </ol>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Built as the working implementation of a VTOL SAR drone proposal.</p>
+  <p><a href="#" id="repo-link-2">View the source on GitHub</a></p>
+</footer>
+
+</body>
+</html>

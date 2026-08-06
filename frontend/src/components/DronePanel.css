@@ -1,0 +1,184 @@
+.drone-panel {
+  min-height: 280px;
+}
+
+.drone-panel.collapsed {
+  min-height: 0;
+}
+
+.drone-panel.collapsed .panel-header {
+  border-bottom: 0;
+}
+
+.drone-panel-body {
+  max-height: 360px;
+}
+
+.panel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+  flex-shrink: 0;
+}
+
+/* Status count chips in header */
+.panel-status-counts {
+  display: flex;
+  gap: 4px;
+  margin-left: 6px;
+  flex: 1;
+}
+
+.count-chip {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  padding: 1px 5px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  opacity: 0.75;
+}
+.count-chip.cyan  { color: var(--cyan); }
+.count-chip.amber { color: var(--amber); }
+.count-chip.green { color: var(--green); }
+
+/* ── Drone card ─────────────────────────────────────────── */
+.drone-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.drone-card:hover { background: var(--bg-hover); border-color: var(--border-bright); }
+
+.drone-card.selected {
+  border-color: var(--cyan);
+  background: rgba(0, 229, 255, 0.04);
+  box-shadow: 0 0 10px var(--cyan-glow);
+}
+
+/* Status-specific left accent */
+.drone-card.status-returning { border-left: 2px solid var(--amber); }
+.drone-card.status-charging  { border-left: 2px solid var(--green); }
+.drone-card.status-searching { border-left: 2px solid var(--cyan); }
+.drone-card.status-offline   { border-left: 2px solid #37474f; opacity: 0.5; }
+
+.drone-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.drone-id {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.drone-status {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  padding: 1px 5px;
+  border: 1px solid;
+  border-radius: 2px;
+  opacity: 0.85;
+}
+
+/* ── Battery bar ────────────────────────────────────────── */
+.battery-wrap {
+  position: relative;
+  height: 4px;
+  background: var(--bg-deep);
+  border-radius: 2px;
+  margin-bottom: 7px;
+  border: 1px solid var(--border);
+  overflow: visible;
+}
+
+.battery-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.8s ease;
+}
+
+.battery-fill.charging-anim {
+  animation: charge-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes charge-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.battery-label {
+  position: absolute;
+  right: 0;
+  top: -15px;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Stats grid ─────────────────────────────────────────── */
+.drone-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px 8px;
+  margin-bottom: 8px;
+}
+
+.stat { display: flex; flex-direction: column; gap: 1px; }
+.stat-label { font-size: 8px; letter-spacing: 0.12em; color: #334466; text-transform: uppercase; }
+.stat-val   { font-size: 11px; color: #8eaac8; }
+
+/* ── Recall button ──────────────────────────────────────── */
+.recall-btn {
+  width: 100%;
+  padding: 4px 0;
+  background: transparent;
+  border: 1px solid var(--amber);
+  border-radius: var(--radius);
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.recall-btn:hover:not(.disabled) {
+  background: var(--amber-glow);
+}
+
+.recall-btn.disabled {
+  border-color: #334466;
+  color: #334466;
+  cursor: not-allowed;
+}
+
+.recall-btn.disabled.status-charging {
+  border-color: var(--green-dim);
+  color: var(--green-dim);
+}
+
+.recall-btn.confirmed {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-glow);
+}
+
+/* ── Empty state ────────────────────────────────────────── */
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  font-size: 11px;
+}
