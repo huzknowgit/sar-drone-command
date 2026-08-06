@@ -22,7 +22,7 @@ sar-drone-system/
 ├── frontend/         DEMO dashboard with 3D Three.js simulation panel
 ├── frontend-prod/    PRODUCTION dashboard (no 3D, wired to real Pi drones)
 ├── raspberry_pi/     Python drone node (camera, AI, thermal, MAVLink)
-└── website/          Static project showcase page (GitHub Pages)
+└── docs/             Docs + static project showcase page (GitHub Pages)
 ```
 
 Two frontends serve different purposes:
