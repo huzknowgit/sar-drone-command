@@ -4,7 +4,7 @@ A real-time search-and-rescue drone command system: Raspberry Pi drone nodes
 with on-device AI person detection, MAVLink flight control, live MJPEG video,
 and a mission-control dashboard with area sweep planning.
 
-See it in action: **[website/index.html](website/index.html)** (or the hosted GitHub Pages site).
+See it in action: **[docs/index.html](docs/index.html)** (or the hosted GitHub Pages site).
 
 ## System Architecture
 
