@@ -109,6 +109,10 @@ The Pi node picks the best available backend automatically:
 2. **MobileNet SSD** (OpenCV DNN) — download weights per `raspberry_pi/models/README.md`
 3. **HOG+SVM** (OpenCV built-in) — zero dependencies, emergency fallback
 
+This project's own aerial-tuned weights took person-detection recall from a
+0.51 baseline to 0.85. Those trained weights aren't included in this repo —
+email **huzaifa.farook@gmail.com** to request them.
+
 For high-resolution camera frames (`VIDEO_WIDTH` ≥ ~1280), `AI_TILING=true`
 enables SAHI-style sliced inference — the detector runs on overlapping
 `AI_TILE_SIZE` crops plus one full-frame pass and merges the results, which
